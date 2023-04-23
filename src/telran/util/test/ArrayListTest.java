@@ -172,16 +172,11 @@ void setUp() {
 	}
 	@Test
 	void testRemoveifPredict(){
-		Integer [] expected = { 50, 100, 30};
-		Integer [] expected1 = {  50,  30};
-		
-		assertEquals(true, list.removeIf(a -> a < 25));
+		Integer[] expected = {10, -20,  50, 100, 30};
+		assertFalse(list.removeIf(a -> a % 2 != 0
+				&& a >= 10));
+		assertTrue(list.removeIf(a -> a % 2 != 0));
 		runTest(expected);
-		assertEquals(true, list.removeIf(a -> a > 55));
-		runTest(expected1);
-		assertEquals(false, list.removeIf(a -> a > 420));
-//		assertEquals(true, list.removeIf(a -> a == 10));
-//		runTest(expectedNo10_50_30);
 	}
 	@Test
  	private void runTest(Integer[] expected) {
