@@ -13,7 +13,7 @@ private class LinkedListIterator implements Iterator<T> {
 
 	@Override
 	public boolean hasNext() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stu
 		return false;
 	}
 
