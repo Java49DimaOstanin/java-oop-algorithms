@@ -37,21 +37,7 @@ default int indexOf(T pattern) {
 	return indexOf(obj -> isEqual(obj, pattern));
 }
 
-default T[] toArray(T[] ar) {
-	int size = size();
-	if (ar.length < size) {
-		ar = Arrays.copyOf(ar, size);
-	}
-	for(int i = 0; i < size;i++) {
-		ar[i] = get(i);
-	}
-	
-	if (ar.length > size) {
-		ar[size] = null;
-	}
 
-	return ar;
-}
 
 default int lastIndexOf(T pattern) {
 	return lastIndexOf(obj -> isEqual(obj, pattern));

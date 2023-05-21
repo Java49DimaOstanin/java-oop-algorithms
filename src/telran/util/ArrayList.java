@@ -3,6 +3,7 @@ package telran.util;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 public class ArrayList<T> implements List<T> {
@@ -10,17 +11,24 @@ public class ArrayList<T> implements List<T> {
 	private T[] array;
 	private int size;
 private class ArrayListIterator implements Iterator<T> {
-
+int currentIndex = 0;
 	@Override
 	public boolean hasNext() {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return currentIndex < size;
 	}
 
 	@Override
 	public T next() {
-		// TODO Auto-generated method stub
-		return null;
+		if(!hasNext()) {
+			throw new NoSuchElementException();
+		}
+		
+		return array[currentIndex++];
+	}
+	@Override
+	public void remove() {
+		ArrayList.this.remove(--currentIndex);
 	}
 	
 }
@@ -139,25 +147,7 @@ private class ArrayListIterator implements Iterator<T> {
 		return res;
 	}
 
-	@Override
-	public boolean removeIf(Predicate<T> predicate) {
-		int oldSize = size;
-//		int i = 0;
-//		while(i < size) {
-//			if(predicate.test(array[i])) {
-//				remove(i);
-//			} else {
-//				i++;
-//			}
-//		}
-		for(int i = size - 1; i >= 0; i--) {
-			if(predicate.test(array[i])) {
-				remove(i);
-			} 
-		}
-		return oldSize > size;
-	}
-
+	
 	@Override
 	public Iterator<T> iterator() {
 		
