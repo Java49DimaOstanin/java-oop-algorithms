@@ -12,6 +12,7 @@ public class LinkedList<T> implements List<T> {
 	int size;
 private class LinkedListIterator implements Iterator<T> {
 Node<T> current = head;
+boolean flNext = false;
 	@Override
 	public boolean hasNext() {
 		
@@ -25,8 +26,19 @@ Node<T> current = head;
 		}
 		T res = current.obj;
 		current = current.next;
+		flNext = true;
 		return res;
 	}
+	@Override
+	public void remove() {
+		if (!flNext) {
+			throw new IllegalStateException();
+		}
+		Node<T> removedNode = current != null ? current.prev : tail;
+		removeNode(removedNode);
+		flNext = false;
+	}
+	
 	
 }
 	private static class Node<T> {

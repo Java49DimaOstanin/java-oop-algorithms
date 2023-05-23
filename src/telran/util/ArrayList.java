@@ -10,8 +10,10 @@ public class ArrayList<T> implements List<T> {
 	private static final int DEFAULT_CAPACITY = 16;
 	private T[] array;
 	private int size;
+	
 private class ArrayListIterator implements Iterator<T> {
 int currentIndex = 0;
+boolean flNext = false;
 	@Override
 	public boolean hasNext() {
 		
@@ -23,12 +25,16 @@ int currentIndex = 0;
 		if(!hasNext()) {
 			throw new NoSuchElementException();
 		}
-		
+		flNext = true;
 		return array[currentIndex++];
 	}
 	@Override
 	public void remove() {
+		if(!flNext) {
+			throw new IllegalStateException();
+		}
 		ArrayList.this.remove(--currentIndex);
+		flNext = false;
 	}
 	
 }
@@ -49,6 +55,12 @@ int currentIndex = 0;
 		array[size] = obj;
 		size++;
 		return true;
+	}
+	@Override
+	public boolean removeIf(Predicate<T> predicate) {
+		//TODO rewrite the removeIf method of ArrayList for optimization (O[N])
+		
+		return false;
 	}
 
 	private void reallocate() {

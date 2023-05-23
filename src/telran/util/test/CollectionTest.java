@@ -117,6 +117,18 @@ public abstract class CollectionTest {
 		
 		
 	}
+	@Test
+	void testContains() {
+		assertTrue(collection.contains(numbers[0]));
+		assertTrue(collection.contains(numbers[3]));
+		assertTrue(collection.contains(numbers[numbers.length - 1]));
+		assertFalse(collection.contains(1000000));
+	}
+	@Test
+	void clearFunctionalTest() {
+		collection.clear();
+		assertEquals(0, collection.size());
+	}
 	protected void runTest(Integer[] expected) {
 		Integer [] actual = collection.toArray(new Integer[0]);
 		
