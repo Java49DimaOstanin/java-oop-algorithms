@@ -12,62 +12,58 @@ class LineRecursionTest {
 	@Test
 	@Disabled
 	void test() {
-		f(4);
+		f(6);
 	}
 
 	private void f(int a) {
-		if(a > 5) {
+		if (a > 0) {
 			System.out.println(a);
-			f(a-1);
+			f(a - 1);
 		}
 		
 	}
 	@Test
-	void factorialTest() {
-		
+	void factorialTest ()
+	{
 		assertEquals(6, LineRecursion.factorial(3));
 		assertEquals(24, LineRecursion.factorial(4));
 		assertEquals(1, LineRecursion.factorial(0));
-
+		
 	}
 	@Test
-	void powerTest() {
-		assertEquals(3, LineRecursion.pow(3, 1));
-		assertEquals(3125, LineRecursion.pow(5, 5));
-		assertEquals(32, LineRecursion.pow(2, 5));
-		assertEquals(1, LineRecursion.pow(5, 0));
+	void powTest () {
+		assertEquals(100, LineRecursion.pow(10, 2));
+		assertEquals(100, LineRecursion.pow(-10, 2));
+		assertEquals(1000, LineRecursion.pow(10, 3));
+		assertEquals(-1000, LineRecursion.pow(-10, 3));
 	}
-	@Test 
-	void sumTest(){
-		assertEquals(21, LineRecursion.sum(new int[] {1,2,3,4,5,6}));
+	@Test
+	void sumTest() {
+		assertEquals(21, LineRecursion.sum(new int[] {1 , 2, 3, 4, 5, 6}));
 	}
 	@Test
 	void reverseTest() {
-		int array[] = {1,2,3,4,5,6};
-		int array1[] = {1,2,3,4,5,6,7};
-		int expected[] = {6,5,4,3,2,1};
-		int expected1[] = {7,6,5,4,3,2,1};
+		int array[] = {1 , 2, 3, 4, 5, 6};
+		int array1[] = {1 , 2, 3, 4, 5, 6, 7};
+		int expected[] = {6, 5, 4, 3, 2, 1};
+		int expected1[] = {7, 6, 5, 4, 3, 2, 1};
 		assertArrayEquals(expected, LineRecursion.reverse(array));
 		assertArrayEquals(expected1, LineRecursion.reverse(array1));
 	}
 	@Test
 	void squareTest() {
-		assertEquals(25, LineRecursion.square(5));
 		assertEquals(100, LineRecursion.square(10));
+		assertEquals(10000, LineRecursion.square(-100));
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Test
+	void isSubstringTest() {
+		String str = "blobloblobloblokbloblo.";
+		assertTrue(LineRecursion.isSubstring(str, "blok"));
+		assertTrue(LineRecursion.isSubstring(str, "kblob"));
+		assertTrue(LineRecursion.isSubstring(str, "oblo."));
+		assertFalse(LineRecursion.isSubstring(str, "blod"));
+		assertFalse(LineRecursion.isSubstring(str, "bok"));
+		assertFalse(LineRecursion.isSubstring(str, "loko"));
+	}
+
 }
