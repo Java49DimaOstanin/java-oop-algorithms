@@ -9,6 +9,9 @@ import telran.util.stream.PrimitiveStreams;
 
 import static telran.util.stream.PrimitiveStreams.*;
 
+import java.util.Arrays;
+import java.util.Random;
+
 
 ;class PrimitiveStreamTest {
 
@@ -51,12 +54,17 @@ import static telran.util.stream.PrimitiveStreams.*;
 	}
 	@Test
 	void shuffleTest() {
-		int[]array = {1,2,3,4,5,6,7,8,9};
-		int[]shuffled = PrimitiveStreams.shuffle(array);
-		runArrayNotEqualTest(array,shuffled);
-//		for(int num:shuffled) {
-//			System.out.print(num);
-//		}
+		int [] array = new Random().ints(100).sorted().toArray();
+		
+		int [] arrayPrev = shuffle(array);
+		for(int i = 0; i < 100; i++) {
+			int [] arrayNext = shuffle(array);
+			runArrayNotEqualTest(arrayPrev, arrayNext);
+			Arrays.sort(arrayPrev);
+			assertArrayEquals(arrayPrev, array);
+			arrayPrev = arrayNext;
+			
+		}
 	}
 	
 }
