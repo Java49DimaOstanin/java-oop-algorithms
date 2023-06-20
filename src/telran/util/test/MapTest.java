@@ -6,10 +6,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 
-import telran.util.Collection;
 import telran.util.Map;
 import telran.util.Map.Entry;
-import telran.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -67,7 +65,7 @@ protected Map<String, Integer> map;
 	}
 	@Test
 	void removeTest() {
-		Integer[] removedValues = Arrays.stream(keys).map(k -> map.remove(k)).toArray(Integer[]::new);
+		Integer[] removedValues = Arrays.stream(keys).map(map::remove).toArray(size -> new Integer[size]);
 		assertArrayEquals(values, removedValues);
 		assertNull(map.remove(keys[0]));
 		assertEquals(0, map.entrySet().size());
