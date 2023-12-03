@@ -1,10 +1,9 @@
-package telran.strings;
+package telran.performance;
 
 import java.lang.reflect.Constructor;
 import java.util.Arrays;
 
-//Run Config
-// -> JoinStringsBuilderImpl JoinStringImpl JoinStringsStandardImpl
+import telran.strings.*;
 
 public class JoinStringsPerformanceAppl {
 
